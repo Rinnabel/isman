@@ -16,7 +16,7 @@ class Pasien extends Migration
         Schema::create('pasien', function (Blueprint $table) {
             $table->char('nik', 16)->unique();
                 $table->primary('nik');
-            $table->string('nama');
+            $table->string('nama_pasien');
             $table->string('tempat_lahir');
             $table->date('tanggal_lahir');
             $table->string('jenis_kelamin');

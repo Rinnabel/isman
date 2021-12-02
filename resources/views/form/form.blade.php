@@ -7,8 +7,8 @@
     <form action="/form/store" class="needs-validation" novalidate method="POST">
         @csrf
         <div class="form-group">
-            <label for="nama">Nama Pasien:</label>
-            <input type="text" class="form-control" id="nama" placeholder="Masukkan Nama Pasien" name="nama" required>
+            <label for="nama_pasien">Nama Pasien:</label>
+            <input type="text" class="form-control" id="nama_pasien" placeholder="Masukkan Nama Pasien" name="nama_pasien" required>
             <div class="valid-feedback">Valid.</div>
             <div class="invalid-feedback">Please fill out this field.</div>
         </div>
@@ -78,30 +78,14 @@
         <div class='form-group'>
             <label for="kamar">No Kamar:</label>
             <div class="form-inline">
-                <select name="nama_ruang" class="custom-select form-control col-sm-3" required>
-                    <option value="">Nama Ruang</option>
-                    <option value="wk1">WK 1</option>
-                    <option value="wk2">WK 2</option>
-                    <option value="wk3">WK 3</option>
-                    <option value="wk4">WK 4</option>
+                <select name="kamar" id="kamar" class="custom-select form-control col-sm-3" required>
+                    <option value="">--- Pilih Ruang ---</option>
+                    @foreach ($kamar as $key => $value)
+                    <option value="{{ $key }}">{{ $value }}</option>
+                    @endforeach
                 </select>
-                <select name="nomor" class="custom-select form-control col-sm-3 ml-1" required>
-                    <option value="">Nomor Kamar</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
-                    <option value="13">13</option>
-                    <option value="14">14</option>
-                    <option value="vvip1">VVIP1</option>
+                <select name="detailkamar" id="detailkamar" class="custom-select form-control col-sm-3 ml-1" >
+                    <!--<option value="">--- Nomor Kamar ---</option> -->
                 </select>
             </div>
             <div class="valid-feedback">Valid.</div>
@@ -112,8 +96,8 @@
             <div class="form-inline">
                 <select name="status_tes" class="custom-select form-control col-sm-3" required>
                     <option value="">Tes Rapid/PCR</option>
-                    <option value="positif">Rapid</option>
-                    <option value="negatif">PCR</option>
+                    <option value="rapid">Rapid</option>
+                    <option value="pcr">PCR</option>
                 </select>
                 <select name="status" class="custom-select form-control col-sm-3" required>
                     <option value="">Status Tes</option>
@@ -243,4 +227,27 @@
         }, false);
     })();
 
+    $(document).ready(function () {
+                $('#kamar').on('change', function () {
+                let id = $(this).val();
+                $('#detailkamar').empty();
+                $('#detailkamar').append(`<option value="0" disabled selected>Processing...</option>`);
+                $.ajax({
+                type: 'GET',
+                url: 'form/getkamar/' + id,
+                success: function (response) {
+                var response = JSON.parse(response);
+                console.log(response);   
+                $('#detailkamar').empty();
+                $('#detailkamar').append(`<option value="0" disabled selected>Pilih Kamar</option>`);
+                response.forEach(element => {
+                    $('#detailkamar').append(`<option value="${element['id']}">${element['nama']}</option>`);
+                    });
+                }
+            });
+        });
+    });
+
 </script>
+
+@endsection

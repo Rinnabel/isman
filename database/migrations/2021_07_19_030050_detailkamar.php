@@ -18,11 +18,6 @@ class Detailkamar extends Migration
             $table->unsignedbigInteger('kamar_id')->nullable();
                 $table->foreign('kamar_id')->references('id')->on('kamar');
             $table->string('nama');
-            $table->string('kelas');
-            $table->string('ket_ruang');
-            $table->string('fasilitas');
-            $table->string('keterangan');
-            $table->string('status');
             $table->timestamp('created_at')->nullable();
         });
     }

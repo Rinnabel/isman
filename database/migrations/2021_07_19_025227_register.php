@@ -15,11 +15,12 @@ class Register extends Migration
     {
         Schema::create('register', function (Blueprint $table) {
             //$table->id();
+            $table->id();
             $table->char('pasien_nik', 16)->nullable();
             $table->date('tanggal_masuk');
             $table->date('tanggal_keluar');
             $table->string('asal_pengirim');
-            $table->unsignedbigInteger('kamar_id')->nullable();
+            $table->unsignedbigInteger('detailkamar_id')->nullable();
             $table->string('status_tes');
             $table->string('status');
             $table->date('tanggal_tes');
@@ -33,7 +34,7 @@ class Register extends Migration
             $table->string('hasil_swab4');
             $table->timestamp('created_at')->nullable();
             $table->foreign('pasien_nik')->references('nik')->on('pasien');
-            $table->foreign('kamar_id')->references('id')->on('kamar');
+            $table->foreign('detailkamar_id')->references('id')->on('detailkamar');
         });
     }
 

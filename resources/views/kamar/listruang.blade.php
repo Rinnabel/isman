@@ -2,13 +2,15 @@
 
 @section('content')
 
-<div class="container">
-    <table class="table table-bordered">
+<div class="container pt-4" style="margin-top:50px">
+  <h2>List Ruang</h2>
+  <br>  
+  <table class="table table-bordered">
         <thead>                  
           <tr>
             <th style="width: 10px">No</th>
             <th>Nama Ruang</th>
-            <th style="width: 40px">Action</th>
+            <th style="width: 150px">Edit Ruang</th>
           </tr>
         </thead>
         <tbody>
@@ -17,7 +19,7 @@
               <td> {{ $key + 1 }} </td>
               <td> {{ $listruang->nama_ruang }} </td>
               <td>
-                <a class="btn btn-info btn-sm" href="/pertanyaan/{{$listruang->id}}">Show</a>
+                <a class="btn btn-info btn-sm" href="/ruang/{{$listruang->id}}/edit">Edit</a>
               </td>
             </tr>
           @empty
