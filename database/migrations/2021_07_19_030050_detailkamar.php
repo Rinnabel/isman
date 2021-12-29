@@ -17,7 +17,7 @@ class Detailkamar extends Migration
             $table->id();
             $table->unsignedbigInteger('kamar_id')->nullable();
                 $table->foreign('kamar_id')->references('id')->on('kamar');
-            $table->string('nama');
+            $table->string('nama')->unique();
             $table->timestamp('created_at')->nullable();
         });
     }

@@ -15,7 +15,7 @@ class Kamar extends Migration
     {
         Schema::create('kamar', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_ruang');
+            $table->string('nama_ruang')->unique();
             $table->timestamp('created_at')->nullable();
         });
     }

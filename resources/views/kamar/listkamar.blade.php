@@ -22,7 +22,7 @@
               <td> {{ $listkamar->nama_ruang}} </td>
               <td> {{ $listkamar->nama}}</td>
               <td>
-                <a class="btn btn-info btn-sm" href="">Edit</a>
+                <a class="btn btn-info btn-sm" href="/kamar/{{$listkamar->id}}/edit">Edit</a>
               </td>
               <td>
                 <form action="/kamar/list/{{$listkamar->id}}" method="POST">

@@ -39,10 +39,12 @@ Route::post('ruang/form/store', [KamarController::class, 'storeruang']);
 Route::get('ruang/form/success', [KamarController::class, 'success']);
 Route::get('ruang/list', [KamarController::class, 'listruang']);
 Route::get('/ruang/{id}/edit', [KamarController::class, 'editruang']);
+Route::put('/ruang/{id}/update', [KamarController::class, 'updateruang']);
 
 Route::get('kamar/form', [KamarController::class, 'formkamar']);
 Route::post('kamar/form/store', [KamarController::class, 'storekamar']);
 Route::get('kamar/form/success', [KamarController::class, 'formkamar']);
 Route::get('kamar/list', [KamarController::class, 'listkamar']);
 Route::delete('kamar/list/{id}', [KamarController::class, 'deletekamar']);
-
+Route::get('/kamar/{id}/edit', [KamarController::class, 'editkamar']);
+Route::put('/kamar/{id}/update', [KamarController::class, 'updatekamar']);

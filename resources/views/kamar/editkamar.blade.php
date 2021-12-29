@@ -3,17 +3,29 @@
 @section('content')
 
 <div class="container pt-4">
-    <h2>Edit Ruang {{$kamar->nama_ruang}}</h2>
-    <form role="form" action="/ruang/{{$kamar->id}}/update" method="POST">
+    <h2>Data Kamar {{$detailkamar->nama}}</h2>
+    <form action="/kamar/{{$detailkamar->id}}/update" class="needs-validation" novalidate method="POST">
         @csrf
         @method('PUT')
         <div class="form-group">
-            <label for="nama">Nama Ruang:</label>
-            <input type="text" class="form-control text-capitalize" id="nama_ruang" value="{{$kamar->nama_ruang}}" placeholder="Masukkan Nama Ruang" name="nama_ruang" value="{{ old('nama_ruang', $kamar->nama_ruang) }}" required>
+            <label for="ruang">Ruang:</label>
+            <select name="ruang" class="form-control" style="width:250px" required>
+                <option value="">--- Pilih Ruang ---</option>
+                @foreach ($kamar as $key => $value)
+                <option value="{{ $key }}">{{ $value }}</option>
+                @endforeach
+            </select>
         </div>
+
+        <div class="form-group">
+            <label for="nama">Nama Kamar:</label>
+            <input type="text" class="form-control" id="nama" value="{{$detailkamar->nama}}" placeholder="Masukkan Nama Kamar" name="nama" required>
+            <div class="valid-feedback">Valid.</div>
+            <div class="invalid-feedback">Please fill out this field.</div>
+        </div>
+
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
-
 </div>
 
 <script>
